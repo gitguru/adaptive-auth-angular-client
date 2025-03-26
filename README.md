@@ -26,8 +26,8 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
 
-# Create and run Angujarjs app in development mode
-> Note that this environment is configured to use `nvm` so, make sure `nvm` is installed and running previous to create and run sample Angularjs application in ***development mode***.
+# Create and run AngularJS app in development mode
+> Note that this environment is configured to use `nvm` so, make sure `nvm` is installed and running previous to create and run sample AngularJS application in ***development mode***.
 ```
 nvm use
 npm install -g @angular/cli@17
