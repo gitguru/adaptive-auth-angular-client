@@ -1,0 +1,10 @@
+<div class="my-4">
+    <form [formGroup]="clientIdForm" (submit)="save()">
+        <div class="form-group">
+            <label for="clientId">Current client public key</label>
+            <textarea class="form-control" id="clientId" name="clientId" rows="2" formControlName="clientId"></textarea>
+        </div>
+        <button *ngIf="isSet" type="submit" class="btn btn-primary mt-2">Update</button>
+        <button *ngIf="!isSet" type="submit" class="btn btn-primary mt-2">Save</button>
+    </form>
+</div>

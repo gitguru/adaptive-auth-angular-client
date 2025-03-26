@@ -1,0 +1,18 @@
+<div class="container">
+    <div *ngIf="!error">
+        <h2>API Server Response !</h2>
+        <h4>Current UTC timestamp is: <span>{{ timestampData | json }}</span></h4>
+    </div>
+
+    <div *ngIf="error">
+        <h1>Error Occurred!</h1>
+        <div class="alert alert-danger" role="alert">
+          <b>
+            [<span>{{ statusData }}</span>]
+            <span>{{ errorData | json }}</span>
+          </b>
+        </div>        
+    </div>
+
+    <a [routerLink]="['/']" class="btn btn-primary mt-2">Back home</a>
+</div>

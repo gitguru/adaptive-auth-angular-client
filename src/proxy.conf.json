@@ -1,0 +1,11 @@
+{
+    "/proxy": {
+      "target": "https://java-server-demo.dev.sevenhills.ai",
+      "secure": false,
+      "logLevel": "debug",
+      "pathRewrite": {
+        "^/proxy": ""
+      },
+      "changeOrigin": true
+    }
+}
