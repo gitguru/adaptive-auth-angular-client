@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { DEMO_SERVER_BASE_URL } from '../../app.constants';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { LocalService } from './local-service';
@@ -9,10 +10,11 @@ import { Base32 } from '../util/base32';
     providedIn: 'root'
 })
 export class TotpService {
-    // private DEMO_SERVER_BASE_URL: string = "https://java-server-demo.dev.sevenhills.ai"
-    private DEMO_SERVER_BASE_URL: string = "/proxy"
+    private demoServerBaseUrl = DEMO_SERVER_BASE_URL;
 
-    constructor(private localService: LocalService, private http: HttpClient) { }
+    constructor(
+        private localService: LocalService, 
+        private http: HttpClient) { }
 
     getClientId(): string {
         return this.localService.getData('clientId') || 'abc';
@@ -40,7 +42,7 @@ export class TotpService {
         .set('Accept', 'application/json')
         .set('X-API-Dynamics-Client-Id', this.localService.getData("clientId") || '');
 
-        return this.http.get<any>(`${this.DEMO_SERVER_BASE_URL}/adaptiveAuthentication/generateClientTotp?tid=${transactionId}`, 
+        return this.http.get<any>(`${this.demoServerBaseUrl}/adaptiveAuthentication/generateClientTotp?tid=${transactionId}`, 
             { 
                 headers: headers,
                 observe: 'response' as 'body', 

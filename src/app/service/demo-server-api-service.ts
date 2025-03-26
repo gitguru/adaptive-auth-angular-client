@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { DEMO_SERVER_BASE_URL } from '../../app.constants';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { mergeMap } from 'rxjs/operators';
@@ -9,10 +10,12 @@ import { IpService } from './ip-service';
     providedIn: 'root'
 })
 export class DemoServerApiService {
-    // private DEMO_SERVER_BASE_URL: string = "https://java-server-demo.dev.sevenhills.ai"
-    private DEMO_SERVER_BASE_URL: string = "/proxy"
+    private demoServerBaseUrl = DEMO_SERVER_BASE_URL;
 
-    constructor(private http: HttpClient, private localService: LocalService, private ipService: IpService) { }
+    constructor(
+        private http: HttpClient, 
+        private localService: LocalService, 
+        private ipService: IpService) { }
 
     /**
      * Get current client Ip address
@@ -37,11 +40,11 @@ export class DemoServerApiService {
         .set('Remote_Addr', ip)
         .set('X-API-Dynamics-Client-Id', this.localService.getData("clientId") || '');
         
-        return this.http.get<any>(`${this.DEMO_SERVER_BASE_URL}/api/timestamp`, 
+        return this.http.get<any>(`${this.demoServerBaseUrl}/api/timestamp`, 
             { 
                 headers: headers,
                 observe: 'response' as 'body', 
-                responseType: 'json' as 'json'
+                responseType: 'json' as 'json',
             });
     }
 
@@ -68,7 +71,7 @@ export class DemoServerApiService {
         .set('Accept', 'application/json')
         .set('X-API-Dynamics-Client-Id', this.localService.getData("clientId") || '');
 
-        return this.http.get<any>(`${this.DEMO_SERVER_BASE_URL}/adaptiveAuthentication/validateClientTotp?tid=${transactionId}&totp=${totp}`, 
+        return this.http.get<any>(`${this.demoServerBaseUrl}/adaptiveAuthentication/validateClientTotp?tid=${transactionId}&totp=${totp}`, 
             { 
                 headers: headers,
                 observe: 'response' as 'body', 

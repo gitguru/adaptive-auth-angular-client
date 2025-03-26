@@ -1,7 +1,7 @@
 <div class="container">
     <div *ngIf="!error">
         <h2>API Server Response !</h2>
-        <h4>Current UTC timestamp is: <span>{{ timestampData | json }}</span></h4>
+        <h4>Current UTC timestamp is: <span>{{ timestampData | date : 'full' }}</span></h4>
     </div>
 
     <div *ngIf="error">

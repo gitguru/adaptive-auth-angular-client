@@ -25,3 +25,31 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+# Create and run Angujarjs app in development mode
+> Note that this environment is configured to use `nvm` so, make sure `nvm` is installed and running previous to create and run sample Angularjs application in ***development mode***.
+```
+nvm use
+npm install -g @angular/cli@17
+ng new angular-demo
+cd angular-demo
+npm start
+```
+
+## Docker
+### Creating the image
+```
+docker build --pull --no-cache --platform="linux/amd64" --provenance=false -t angular-demo:latest -f Dockerfile .
+```
+
+## Login to AWS ECR
+```
+aws --profile {PROFILE} ecr get-login-password --regionn {REGION} | docker login --username AWS --password-stdin {ECR_URI}
+```
+
+# Build and push (demo-server) docker image to ECR
+```
+docker build --pull --no-cache --platform="linux/amd64" --provenance=false -t angular-demo:latest -f Dockerfile .
+docker tag angular-demo:latest 071215964715.dkr.ecr.us-west-2.amazonaws.com/shs-common-backend:angular_client_demo_007
+docker push 071215964715.dkr.ecr.us-west-2.amazonaws.com/shs-common-backend:angular_client_demo_007
+```

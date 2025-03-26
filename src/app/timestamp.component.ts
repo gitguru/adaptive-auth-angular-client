@@ -14,7 +14,7 @@ import { firstValueFrom } from 'rxjs';
 export class TimestampComponent implements OnInit {
   totpType: string = '';
   error: boolean = false;
-  timestampData: any = {};
+  timestampData: number = 0;
   errorData: any = {};
   statusData: any = {};
 
@@ -23,7 +23,7 @@ export class TimestampComponent implements OnInit {
   ngOnInit() {
     this.totpType = this.route.snapshot.queryParams["type"];
     this.error = false;
-    this.timestampData = {};
+    this.timestampData = 0;
     this.errorData = {};
     this.statusData = {};
     this.getTimestamp();
